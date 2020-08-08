@@ -1,10 +1,14 @@
 package com.devpro.java09.conf;
 //cấu hình view
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -46,5 +50,23 @@ public class MVCConf implements WebMvcConfigurer {
 		registry.addResourceHandler("/files/**").addResourceLocations("file:C:/Users/Hoang/java09blog/upload/");
 		
 	}
-
+	@ExceptionHandler(value = Exception.class)
+	public ModelAndView defaultErrorHandler(HttpServletRequest req, Exception e) throws Exception {
+		
+		if(e instanceof org.springframework.web.servlet.NoHandlerFoundException) { // 404
+			// Otherwise setup and send the user to a default error-view.
+			ModelAndView mav = new ModelAndView();
+			mav.addObject("exception", e);
+			mav.addObject("url", req.getRequestURL());
+			mav.setViewName("Web/errors/404");
+			return mav;
+		} else {
+			// Otherwise setup and send the user to a default error-view.
+			ModelAndView mav = new ModelAndView();
+			mav.addObject("exception", e);
+			mav.addObject("url", req.getRequestURL());
+			mav.setViewName("errors/common");
+			return mav;
+		}
+	}
 }

@@ -1,8 +1,6 @@
 package com.devpro.java09.controller.Web;
 
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,11 +37,6 @@ public class CartController extends ControllerBasic {
 	}
 
 	
-	
-	
-	
-	
-	
 	@PostMapping(value = "/add-item")
 	public ResponseEntity<AjaxResponse> subscribe(@RequestBody CartItem data, final ModelMap model,
 			final HttpServletRequest request, final HttpServletResponse response) {
@@ -68,8 +61,6 @@ public class CartController extends ControllerBasic {
 		  {
 			  if(item.getProductId() ==  data.getProductId()) {
 				  item.setQuantity(item.getQuantity()+data.getQuantity());
-				  
-				 
 				  check = true; 
 				  break;
 			  } 
@@ -94,18 +85,24 @@ public class CartController extends ControllerBasic {
 	public void editCart(final ModelMap model, final HttpServletRequest request, final HttpServletResponse response,
 			@PathVariable long id)
 			throws IOException {
+		
 		HttpSession  httpSession = request.getSession();
 		Cart cart = (Cart) httpSession.getAttribute("GIO_HANG");
 		for(CartItem item : cart.getList())
 		{
 			if(item.getProductId() == id)
 			{
+				cart.setTatol(cart.getTatol() - item.getQuantity()*item.getPrice().doubleValue());
 				cart.getList().remove(item);
+				
 				break;
 			}
+			
 		}
+		httpSession.setAttribute("GIO_HANG",cart);
+		httpSession.setAttribute("cart", cart.getList().size());
 		response.sendRedirect("/cart/check-out");
 		
 	}
 }
-// hello
+

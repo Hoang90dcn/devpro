@@ -7,7 +7,12 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!-- SPRING FORM -->
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>  
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
+
+<!-- spring taglibs -->
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
+ 
 <!DOCTYPE html>
 <html>
 <head>
@@ -102,7 +107,16 @@
           </li> -->
           
           <li><a href="#contact">Contact Us</a></li>
-           <li><a href="${pageContext.request.contextPath}/login">Đăng Nhập</a></li>
+           <%-- <li><a href="${pageContext.request.contextPath}/login">Đăng Nhập</a></li> --%>
+           <sec:authorize access="!isAuthenticated()">
+					<li class="nav-item"><a class="nav-link "
+						href="${pageContext.request.contextPath}/login">Đăng nhập</a></li>
+				</sec:authorize>
+				<sec:authorize access="isAuthenticated()">
+				  	<li class="nav-item text-nowrap"><a class="nav-link"
+						href="${pageContext.request.contextPath}/perform_logout">Sign
+							out</a></li>
+			</sec:authorize>
           <li>
           	<a href="${pageContext.request.contextPath}/cart/check-out" class="icofont"><i class="icofont-cart-alt"></i>
           		<span id="checkout">

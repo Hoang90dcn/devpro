@@ -63,7 +63,7 @@
 
             <div class="row">
                 <div class="col-md-8">
-                    <img src= "${pageContext.request.contextPath}/files/${product.avatar}" class="content-1" alt="Không tìm thấy ảnh">
+                    <img src= "${pageContext.request.contextPath}/files${product.avatar}" class="content-1" alt="Không tìm thấy ảnh">
                 </div>
 
                 <div class="col-md-4">
@@ -79,15 +79,15 @@
                         <h3>MÀU SẮC CÓ SẴN </h3>
                     </div>
                     <div>
-                            <img src= "${pageContext.request.contextPath}/files/${product.avatar}" class="image-1" alt="Không tìm thấy ảnh">
-                            <img src= "${pageContext.request.contextPath}/files/${product.avatar}" class="image-1" alt="Không tìm thấy ảnh">
+                            <img src= "${pageContext.request.contextPath}/files${product.avatar}" class="image-1" alt="Không tìm thấy ảnh">
+                            <img src= "${pageContext.request.contextPath}/files${product.avatar}" class="image-1" alt="Không tìm thấy ảnh">
                     </div>
                     <div>
                         
                         <h3>MỘT SỐ HÌNH ẢNH MỚI </h3>
-                        <img src= "${pageContext.request.contextPath}/files/${product.avatar}" class="image-1" alt="Không tìm thấy ảnh">
-                        <img src= "${pageContext.request.contextPath}/files/${product.avatar}" class="image-1" alt="Không tìm thấy ảnh">
-                        <img src= "${pageContext.request.contextPath}/files/${product.avatar}" class="image-1" alt="Không tìm thấy ảnh">
+                        <img src= "${pageContext.request.contextPath}/files${product.avatar}" class="image-1" alt="Không tìm thấy ảnh">
+                        <img src= "${pageContext.request.contextPath}/files${product.avatar}" class="image-1" alt="Không tìm thấy ảnh">
+                        <img src= "${pageContext.request.contextPath}/files${product.avatar}" class="image-1" alt="Không tìm thấy ảnh">
                        
                     </div>
 
@@ -137,7 +137,7 @@
                     </p> 
                 </div>
                 <div class="col-md-4" >
-                    <img src= "${pageContext.request.contextPath}/files/${product.avatar}" class="content-2">
+                    <img src= "${pageContext.request.contextPath}/files${product.avatar}" class="content-2">
                 </div>
             </div>
            <div class="row">

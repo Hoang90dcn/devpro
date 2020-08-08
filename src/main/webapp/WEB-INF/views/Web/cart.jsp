@@ -90,7 +90,7 @@
 								<td>${item.productId}</td>
 								<td>
 									<span>${item.productName}</span>
-									<img alt="Không có ảnh" width="50px" height="50px" src="${pageContext.request.contextPath}/files/${item.avatar}">
+									<img alt="Không có ảnh" width="50px" height="50px" src="${pageContext.request.contextPath}/files${item.avatar}">
 								</td>
 								<td>${item.price}</td>
 								<td><input type="number" min="1" max="10" value="${item.quantity}" /> </td>

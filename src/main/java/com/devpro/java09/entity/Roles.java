@@ -7,14 +7,20 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.springframework.security.core.GrantedAuthority;
+
 @Entity 
 @Table(name = "tbl_roles")
-public class Roles extends BasicEntity{
+public class Roles extends BasicEntity implements GrantedAuthority  {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
 	@Column(name = "nameRole", length = 50)
 	private String nameRole;
 	
@@ -23,7 +29,7 @@ public class Roles extends BasicEntity{
 	private String description;
 
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "role")
-	private List<Users> users = new ArrayList<Users>();
+	private List<UserEntity> users = new ArrayList<UserEntity>();
 	
 
 	public String getNameRole() {
@@ -43,6 +49,13 @@ public class Roles extends BasicEntity{
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+
+	@Override
+	public String getAuthority() {
+		
+		return this.nameRole;
 	}
 	
 	

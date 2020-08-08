@@ -58,7 +58,7 @@ public class ContactController extends ControllerBasic {
 	@PostMapping(value = "/save-contact-with-ajax")
 	public ResponseEntity<AjaxResponse> subscribe(@RequestBody final Map<String, Object> data
 			,final ModelMap model, final HttpServletRequest request, final HttpServletResponse response) {
-		String firstName = String.valueOf(data.get("firstName"));
+		//String firstName = String.valueOf(data.get("firstName"));
 		System.out.println(request.getParameter("name"));
 		return ResponseEntity.ok(new AjaxResponse("Conguration! You are subscribe successful!!!", 500));
 	}

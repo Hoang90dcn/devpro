@@ -1,15 +1,13 @@
 package com.devpro.java09.controller.Web;
 
-import com.devpro.java09.entity.CategoriesEntity;
-import com.devpro.java09.service.MenuService;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
+
+import com.devpro.java09.entity.CategoriesEntity;
+import com.devpro.java09.service.MenuService;
 
 public abstract class ControllerBasic {
 

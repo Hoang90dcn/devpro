@@ -59,7 +59,7 @@ public class HomeController extends ControllerBasic{
 	@PostMapping(value = "/save-contact-ajax-home")
 	public ResponseEntity<AjaxResponse> subscribe(@RequestBody final Map<String, Object> data
 			,final ModelMap model, final HttpServletRequest request, final HttpServletResponse response) {
-		String firstName = String.valueOf(data.get("name"));
+		//String firstName = String.valueOf(data.get("name"));
 		System.out.println(request.getParameter("name"));
 		System.out.println(request.getParameter("name"));
 		return ResponseEntity.ok(new AjaxResponse("Conguration! You are subscribe successful!!!", 500));

@@ -64,11 +64,11 @@
                                                 	0
                                                 </td>
                                                 <td>
-                                                	<img width="100px" height="100px" alt="Không có ảnh" src="${pageContext.request.contextPath}/files/${product.avatar }">
+                                                	<img width="100px" height="100px" alt="Không có ảnh" src="${pageContext.request.contextPath}/files${product.avatar }">
                                                 </td>
                                                 <td>
-                                                	<button type="button" class="btn btn-danger">Xóa</button>
-                                                	<button type="button" class="btn btn-success">Cập Nhập</button>
+                                                	<a type="button" class="btn btn-danger" href="${pageContext.request.contextPath}/admin/delete-product/${product.id}">Xóa</a>
+                                                	<a type="button" class="btn btn-danger" href="${pageContext.request.contextPath}/admin/update-product/${product.id}">Cập Nhật</a>
                                                 </td>
                                             </tr>
                                             </c:forEach>

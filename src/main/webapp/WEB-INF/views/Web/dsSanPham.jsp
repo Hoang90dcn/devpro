@@ -63,7 +63,7 @@
                 <c:forEach var="product" items="${products }">
                     <div class="col-lg-4 col-md-6 portfolio-item filter-app">
                         <div class="portfolio-wrap">
-                            <img src="${pageContext.request.contextPath}/files/${product.avatar }"  alt="Không tìm thấy ảnh"/>
+                            <img src="${pageContext.request.contextPath}/files${product.avatar }"  alt="Không tìm thấy ảnh"/>
                             <div class="portfolio-info">
                                 <h4>App 1</h4>
                                 <p>App</p>

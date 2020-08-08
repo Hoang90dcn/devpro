@@ -48,16 +48,18 @@
 		<div class="row">
 
 			<!-- MENU -->
-			
+			<form:hidden path="id"/>
 
 			<!-- CONTENT -->
 			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 
 			<h2>Thêm mới sản phẩm</h2>
+			
 			<form:form method="post" action="/admin/save-product" modelAttribute="product" enctype="multipart/form-data">
+				<form:hidden path="id"/>
 				<div class="form-group">
 					<label>Danh mục</label>
-					<form:select class="form-control form-control-line" path="category.id">
+					<form:select class="form-control form-control-line" path="category.id" >
 						<form:options items="${categories}" itemValue="id" itemLabel="name_categories"/>
 					</form:select>
 				</div>
@@ -92,7 +94,8 @@
 					<label>Anh sản phẩm</label>
 					<input type="file"  name="productAvatars" />
 				</div>
-				<button type="submit" class="btn btn-primary">Lưu trữ</button>
+				<button type="submit" class="btn btn-success">Cập Nhập</button>
+				<a class="btn btn-primary" href="${pageContext.request.contextPath}/admin/list-products">Hủy</a>
 			</form:form>
 			</main>
 		</div>
