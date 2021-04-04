@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
  * Cấu hình Security.
@@ -57,7 +59,12 @@ public class SecureConf extends WebSecurityConfigurerAdapter  {
             .failureUrl("/login?login_error=true") // nhập username, password sai thì redirect về trang nào.
             .permitAll();
 	}
-	
+	@Bean
+    public PasswordEncoder passwordEncoder() {
+//		return new NormalPasswordEncoder();
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(16);
+		return encoder;
+    }
 	/**
 	 * hàm này thực hiện kết nối giữa 2 Beans(AuthenticationManager và UserDetailsService).
 	 * Lí do phải kết nối 2 Beans này vì cần cho AuthenticationManager biết nơi để
@@ -67,7 +74,7 @@ public class SecureConf extends WebSecurityConfigurerAdapter  {
 	 */
 	@Autowired public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		// thực hiện gắn kết AuthenticationManager với UserDetailsService.  
-		auth.userDetailsService(userDetailsService).passwordEncoder(new NormalPasswordEncoder());
+		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());// nơi so sánh pass.
 	}
 	
 	/**
@@ -78,6 +85,7 @@ public class SecureConf extends WebSecurityConfigurerAdapter  {
 	@Bean public AuthenticationManager customAuthenticationManager() throws Exception {
         return authenticationManager();
     }
+	
 	
 	
 	

@@ -14,8 +14,9 @@ import com.devpro.java09.entity.CategoriesEntity;
 public class MenuService {
 	@PersistenceContext protected EntityManager entityManager;
 	
-	public List<CategoriesEntity> findDefaultName() {
-		String sql = "SELECT * FROM java09.tbl_categories where id_parent = 15";
+	@SuppressWarnings("unchecked")
+	public List<CategoriesEntity> findDefaultName(Integer id) {
+		String sql = "SELECT * FROM java09.tbl_categories where test = "+id;
 		Query query = entityManager.createNativeQuery(sql, CategoriesEntity.class);
 		return query.getResultList();
 		

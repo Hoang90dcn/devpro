@@ -42,10 +42,10 @@ public class ProductEntity extends BasicEntity {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "product", fetch = FetchType.LAZY)
 	List<ImageEntity> listImage = new ArrayList<ImageEntity>();
 	
-	/*
-	 * @OneToMany(cascade = CascadeType.ALL, mappedBy = "producst", fetch =
-	 * FetchType.LAZY) List<DetailOder> detailOders = new ArrayList<DetailOder>();
-	 */
+	
+	  @OneToMany(cascade = CascadeType.ALL, mappedBy = "producst", fetch =
+	  FetchType.LAZY) List<DetailOder> detailOders = new ArrayList<DetailOder>();
+	 
 	/*
 	 * public void addDetailOder(DetailOder detailOder) {
 	 * detailOders.add(detailOder); detailOder.setProducst(this); }

@@ -1,13 +1,12 @@
 package com.devpro.java09.service;
 
-import javax.persistence.Query;
-
-import com.devpro.java09.entity.UserEntity;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.stereotype.Service;
+
+import com.devpro.java09.entity.UserEntity;
 
 @Service
 public class Userservice {
@@ -23,5 +22,6 @@ public class Userservice {
 			return null;
 		}
 	}
+	
 
 }

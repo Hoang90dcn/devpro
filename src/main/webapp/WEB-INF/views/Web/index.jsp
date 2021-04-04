@@ -129,21 +129,23 @@
           <div class="col-lg-6 d-flex flex-column justify-content-center about-content">
 
             <div class="section-title">
-              <h2>About Us</h2>
-              <p>MaruMaru là một trong một chuỗi cửa hàng về thời trang trải khắp Việt Nam.
-				Khách hàng là trọng tâm trong mô hình kinh doanh độc đáo của chúng tôi, trong đó bao gồm thiết kế, sản xuất, phân phối và bán hàng thông qua mạng lưới bán lẻ rộng khắp.</p>
+              <h2>Giới Thiệu Về MaruMaru </h2>
+              <p>Website chiếm vai trò trọng tâm trong kế hoạch phát triển kinh doanh dài hạn của mọi người. Rất nhiều công ty thiết kế ra đ
+              ời và sẽ đem cho bạn những sản phẩm “thật bất ngờ”.
+               Do vậy, chọn công ty thiết kế website uy tín sẽ giúp bạn hoàn thiện ngay từ đầu hiệu quả chiến dịch truyền thông của mình.</p>
             </div>
 
             <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
               <div class="icon"><i class="bx bx-fingerprint"></i></div>
               <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+              <p class="description">Bạn hãy thể hiện sự chuyên nghiệp của mình thông qua những bức ảnh mà người truy cập có thể tham khảo trên trang web của bạn.</p>
             </div>
 
             <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
               <div class="icon"><i class="bx bx-gift"></i></div>
               <h4 class="title"><a href="">Nemo Enim</a></h4>
-              <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
+              <p class="description">Chức năng hiệu quả: luôn luôn quan trọng đối với mỗi trang web nào. Tìm hiểu những chức n
+              ăng bạn mong muốn ngoài những chức năng cơ bản của một website Tạp chí và đề xuất với công ty đối tác của mình, để được họ tư vấn và hoàn thiện website của bạn ấn tượng nhất có thể.</p>
             </div>
 
           </div>
@@ -316,8 +318,8 @@
       <div class="container">
 
         <div class="section-title">
-          <h2>Our Team</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem.</p>
+          <h2>Thành Viên Của Chúng Tôi</h2>
+          <p>Nếu bạn muốn có một trang web dùng với mục đích cá nhân, kinh doanh hãy liên hệ nga với chúng tôi.</p>
         </div>
 
         <div class="row">
@@ -396,52 +398,54 @@
       <div class="container">
 
         <div class="section-title">
-          <h2>Frequently Asked Questions</h2>
+          <h2>Thông Tin Thời Trang Mới Nhất</h2>
         </div>
 
         <div class="row  d-flex align-items-stretch">
-
-          <div class="col-lg-6 faq-item" data-aos="fade-up">
-            <h4>Non consectetur a erat nam at lectus urna duis?</h4>
+		<c:forEach var="item" items="${model }">
+			<div class="col-lg-6 faq-item" data-aos="fade-up">
+            <a href="${pageContext.request.contextPath}/news/${item.id }"><h4>${item.title }</h4></a>
             <p>
-              Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.
+             	${item.short_description }
             </p>
           </div>
+		</c:forEach>
+          
 
-          <div class="col-lg-6 faq-item" data-aos="fade-up" data-aos-delay="100">
+        <!--   <div class="col-lg-6 faq-item" data-aos="fade-up" data-aos-delay="100">
             <h4>Feugiat scelerisque varius morbi enim nunc faucibus a pellentesque?</h4>
             <p>
               Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim.
             </p>
-          </div>
+          </div> -->
 
-          <div class="col-lg-6 faq-item" data-aos="fade-up" data-aos-delay="200">
+         <!--  <div class="col-lg-6 faq-item" data-aos="fade-up" data-aos-delay="200">
             <h4>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi?</h4>
             <p>
               Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus.
             </p>
-          </div>
+          </div> -->
 
-          <div class="col-lg-6 faq-item" data-aos="fade-up" data-aos-delay="300">
+         <!--  <div class="col-lg-6 faq-item" data-aos="fade-up" data-aos-delay="300">
             <h4>Ac odio tempor orci dapibus. Aliquam eleifend mi in nulla?</h4>
             <p>
               Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim.
             </p>
-          </div>
+          </div> -->
 
-          <div class="col-lg-6 faq-item" data-aos="fade-up" data-aos-delay="400">
+          <!-- <div class="col-lg-6 faq-item" data-aos="fade-up" data-aos-delay="400">
             <h4>Tempus quam pellentesque nec nam aliquam sem et tortor consequat?</h4>
             <p>
               Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in
             </p>
-          </div>
+          </div> -->
 
-          <div class="col-lg-6 faq-item" data-aos="fade-up" data-aos-delay="500">
+          <!-- <div class="col-lg-6 faq-item" data-aos="fade-up" data-aos="fade-down-left" data-aos-delay="500">
             <h4>Tortor vitae purus faucibus ornare. Varius vel pharetra vel turpis nunc eget lorem dolor?</h4>
             <p>
               Laoreet sit amet cursus sit amet dictum sit amet justo. Mauris vitae ultricies leo integer malesuada nunc vel. Tincidunt eget nullam non nisi est sit amet. Turpis nunc eget lorem dolor sed. Ut venenatis tellus in metus vulputate eu scelerisque.
             </p>
-          </div>
+          </div> -->
 
         </div>
 

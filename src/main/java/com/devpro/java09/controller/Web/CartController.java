@@ -1,6 +1,8 @@
 package com.devpro.java09.controller.Web;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,8 +22,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.devpro.java09.dto.AjaxResponse;
 import com.devpro.java09.dto.Cart;
 import com.devpro.java09.dto.CartItem;
+import com.devpro.java09.entity.DetailOder;
+import com.devpro.java09.entity.OderEntity;
 import com.devpro.java09.entity.ProductEntity;
+import com.devpro.java09.entity.UserEntity;
+import com.devpro.java09.repository.DetailOderRepo;
+import com.devpro.java09.repository.OderRepo;
 import com.devpro.java09.repository.ProductRepo;
+import com.devpro.java09.service.HelpUtil;
 
 @Controller
 @RequestMapping("/cart")
@@ -28,11 +37,14 @@ public class CartController extends ControllerBasic {
 	
 	
 	@Autowired ProductRepo product;
-
+	@Autowired DetailOderRepo detaiRepo;
+	@Autowired OderRepo oderRepo;
+	@Autowired HelpUtil heplRepo;
+	
 	@RequestMapping(value = { "/check-out" }, method = RequestMethod.GET)
 	public String index(final ModelMap model, final HttpServletRequest request, final HttpServletResponse response)
 			throws IOException {
-
+		
 		return "Web/cart";
 	}
 
@@ -104,5 +116,43 @@ public class CartController extends ControllerBasic {
 		response.sendRedirect("/cart/check-out");
 		
 	}
+	@RequestMapping(value = "/save-cart", method = RequestMethod.GET)
+	public void saveCart(final ModelMap model, final HttpServletResponse response, final HttpServletRequest request) throws IOException {
+		HttpSession httpSession = request.getSession();
+		Cart cart = (Cart) httpSession.getAttribute("GIO_HANG");
+		
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserEntity user = (UserEntity) principal;
+		
+		
+		  OderEntity oderEntity = new OderEntity(); 
+		  oderEntity.setId_user(user.getId());
+		  oderRepo.save(oderEntity);
+		  BigInteger idOderCart =  heplRepo.getIdOder(); // lấy id của giỏ hàng mới được tạo 
+		  oderEntity.setId(idOderCart.intValue());
+		  oderEntity.setUnitPrice(new BigDecimal(cart.getTatol()));
+		  
+		  // trường hợp giỏ hàng đã được tạo
+			if (cart.getList().size() != 0) {
+				for(CartItem item : cart.getList())
+				{
+					ProductEntity productEntity = new ProductEntity();
+					productEntity.setId(item.getProductId());
+					DetailOder oder = new DetailOder(oderEntity, productEntity, item.getQuantity());
+					detaiRepo.save(oder);
+				}
+				cart.getList().removeAll(cart.getList());
+				httpSession.setAttribute("GIO_HANG", null);
+				httpSession.setAttribute("cart", 0);
+				response.sendRedirect("/");
+			}
+			// giỏ hàng chưa được tạo
+			else
+			{
+				
+			}
+		
+	}
+
 }
 

@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -42,8 +43,21 @@ public class UserEntity extends BasicEntity implements UserDetails{
 	@Column(name = "numberphone", length = 12)
 	private String numberphone;
 
+	@Lob
+	@Column(name = "address", columnDefinition = "TEXT")
+	private String address;
 	
 	
+	
+	
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "tbl_user_role",
 		joinColumns = @JoinColumn(name="id_user"),
@@ -58,7 +72,8 @@ public class UserEntity extends BasicEntity implements UserDetails{
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-
+	
+	
 	public String getLastName() {
 		return lastName;
 	}
@@ -105,11 +120,16 @@ public class UserEntity extends BasicEntity implements UserDetails{
 		
 		return role;
 	}
-
+	
+	public Integer getID(){
+		// TODO Auto-generated method stub
+		return id;
+	}
+	
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return null;
+		return lastName;
 	}
 
 	@Override

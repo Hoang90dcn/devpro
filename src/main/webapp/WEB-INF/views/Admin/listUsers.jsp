@@ -32,22 +32,18 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4">Dashboard</h1>
+                        <h1 class="mt-4">Danh sách người dùng</h1>
                               <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table mr-1"></i>
-                                DataTable Example
-                            </div>
+                            
                             <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" >
+                               
+                                    <table class="table table-hover" id="dataTable">
                                         <thead>
                                             <tr>
                                             	<th>ID</th>
                                                 <th>Tên</th>
                                                 <th>Email</th>
                                                 <th>Địa Chỉ</th>
-                                                <th>SL mua hàng</th>
                                                 <th>T. Thái</th>
                                                 <th>Action</th>
                                                 
@@ -55,25 +51,44 @@
                                         </thead>
                                        
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Nguyễn Huy Hoàng</td>
-                                                <td>huyhoang10051999@gmail.com</td>
-                                                <td>Hà Đông - Hà Nội</td>
-                                                <td>23</td>
-                                                <td>Unblock</td>
-                                                <td>
-                                                	<button type="button" class="btn btn-danger">Block</button>
-                                                	<button type="button" class="btn btn-success">Unblock</button>
-                                                </td>
-                                            </tr>
+                                        	<c:forEach var="item" items="${users}">
+											<tr>
+
+												<td>${item.id}</td>
+												<td>${item.firstName}${item.lastName}</td>
+												<td>${item.email}</td>
+												<td>${item.address}</td>
+												
+												
+												<c:if test="${item.status eq 'true'}">
+													<td><span class="badge badge-success">Bình Thường</span></td>
+												</c:if>
+												<c:if test="${item.status eq 'false'}">
+													<td><span class="badge badge-danger">Khóa</span></td>
+												</c:if>
+												
+												<!-- hiển thị button để quản lý tài khoản -->
+												<td>
+													<a href="${pageContext.request.contextPath}/admin/detail-user/${item.id}"  class="btn btn-primary" >Chi Tiết</a>
+													<c:if test="${item.status eq 'true'}">
+														<a href="#"  class="btn btn-danger" >Mở Khóa</a>
+														
+													</c:if> <c:if test="${item.status eq 'false'}">
+														
+														<a href="#"  class="btn btn-success" >Khóa</a>
+													</c:if>
+												</td>
+
+
+											</tr>
+										</c:forEach>
                                             
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                   
                 </main>
                <%@include file="/WEB-INF/views/Admin/layout/footer.jsp" %>
             </div>

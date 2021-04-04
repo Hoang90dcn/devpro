@@ -17,4 +17,5 @@ public class HomeController {
 			throws IOException {
 		return "Admin/index";
 	}
+	
 }

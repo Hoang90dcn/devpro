@@ -5,7 +5,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +19,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.devpro.java09.dto.AjaxResponse;
 import com.devpro.java09.dto.Contact;
 import com.devpro.java09.repository.CategoryRepo;
+import com.devpro.java09.repository.DetailOderRepo;
+import com.devpro.java09.repository.NewsRepo;
+import com.devpro.java09.service.MenuService;
+import com.devpro.java09.service.NewsService;
 
 @Controller(value = "HomecontrollerOfWeb")
 
@@ -28,21 +31,16 @@ public class HomeController extends ControllerBasic{
 	
 	
 	@Autowired CategoryRepo category;
+	@Autowired DetailOderRepo detaiRepo;
+	@Autowired MenuService menuRepo;
 	
+	@Autowired NewsService newRepo;
 	
-	
-	@RequestMapping(value = { "/", "home" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
 	public String index(final ModelMap model, final HttpServletRequest request, final HttpServletResponse response)
 			throws IOException {
-		HttpSession httpSession = request.getSession();
-		try {
-			if(httpSession.getAttribute("cart").equals(null))
-			 {
-				 httpSession.setAttribute("cart",null);
-			 }
-		} catch (NullPointerException e) {
-			
-		}
+		
+		model.addAttribute("model", newRepo.find6Record(6));
 		
 		
 		return "Web/index"; 

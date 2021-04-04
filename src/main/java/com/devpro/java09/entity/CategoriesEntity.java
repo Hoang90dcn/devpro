@@ -10,6 +10,10 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/**
+ * @author Hoang
+ *
+ */
 @Entity
 @Table(name = "tbl_categories")
 public class CategoriesEntity extends BasicEntity {
@@ -20,6 +24,8 @@ public class CategoriesEntity extends BasicEntity {
 	
 	@OneToMany (cascade = CascadeType.ALL, mappedBy = "category", fetch = FetchType.LAZY)
 	private List<ProductEntity> products = new ArrayList<ProductEntity>();
+	
+	
 	
 	public void addProduct(ProductEntity product)
 	{
@@ -48,18 +54,25 @@ public class CategoriesEntity extends BasicEntity {
 		this.name_categories = name_categories;
 	}
 
-	@Column(name = "id_parent")
-	private Integer id_parent;
+	/*
+	 * @Column(name = "id_parent", columnDefinition = "INT") private Integer
+	 * id_parent;
+	 */
+
+	@Column(name = "test", columnDefinition = "INT")
+	private Integer test;
+	
+	
+	
 
 
-
-	public Integer getId_parent() {
-		return id_parent;
+	public Integer getTest() {
+		return test;
 	}
-
-	public void setId_parent(Integer id_parent) {
-		this.id_parent = id_parent;
+	public void setTest(Integer test) {
+		this.test = test;
 	}
+	
 
 	
 	

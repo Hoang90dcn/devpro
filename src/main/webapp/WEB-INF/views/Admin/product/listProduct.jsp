@@ -46,7 +46,7 @@
                                             	<th>ID</th>
                                                 <th>Tên SP</th>
                                                 <th>Gía</th>
-                                                <th>Số Lượng</th>
+                                                <th>Ngày đăng</th>
                                                 <th>Ảnh</th>
                                                 <th>Action<th>
                                                 
@@ -60,9 +60,7 @@
                                                 <td>${product.id}</td>
                                                 <td>${product.name_product}</td>
                                                 <td>${product.price}</td>
-                                                <td>
-                                                	0
-                                                </td>
+                                                <td>${product.created_date}</td>
                                                 <td>
                                                 	<img width="100px" height="100px" alt="Không có ảnh" src="${pageContext.request.contextPath}/files${product.avatar }">
                                                 </td>

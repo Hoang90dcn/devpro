@@ -69,4 +69,5 @@ public class MVCConf implements WebMvcConfigurer {
 			return mav;
 		}
 	}
+	//private static final org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger(MVCConf.class);
 }

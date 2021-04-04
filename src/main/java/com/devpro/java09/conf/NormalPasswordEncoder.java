@@ -2,8 +2,8 @@ package com.devpro.java09.conf;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-public class NormalPasswordEncoder implements PasswordEncoder {
-	/**
+public class NormalPasswordEncoder implements PasswordEncoder  {
+	/***
 	 * hàm này sẽ thực hiện mã hoá password người dùng gửi lên.
 	 */
 	@Override

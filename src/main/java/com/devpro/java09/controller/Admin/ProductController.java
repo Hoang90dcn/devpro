@@ -3,6 +3,7 @@ package com.devpro.java09.controller.Admin;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -45,11 +46,15 @@ public class ProductController {
 		return "Admin/product/addProduct";
 	}
 
-	@RequestMapping(value = { "/save-product" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/save-new-product" }, method = RequestMethod.POST)
 	public void saveProduct(@RequestParam("productAvatars") MultipartFile[] productAvatars,
 			@ModelAttribute("product") ProductEntity pro, final ModelMap model, final HttpServletRequest request,
 			final HttpServletResponse response) throws IOException {	
+		
 		System.out.println(pro.getId());
+		LocalDateTime today = LocalDateTime.now();
+		pro.setCreated_date(today);
+		pro.setCreated_by("Hoàng");
 		if(pro.getId()!=null)
 		{
 			ProductEntity productInDB = productRepo.findById(pro.getId()).get();
@@ -64,11 +69,13 @@ public class ProductController {
 			// lấy avatar
 			// 1. kiểm tra người dùng có attach avatar lên không
 			if (productAvatars != null && productAvatars.length > 0) {
-				MultipartFile productAvatar = productAvatars[0];
-				String fullPath = "C:\\Users\\Hoang\\java09blog\\upload\\products\\"
-						+ productAvatar.getOriginalFilename();
-				productAvatar.transferTo(new File(fullPath));
-				pro.setAvatar("/products/" + productAvatar.getOriginalFilename());
+				for (int i = 0; i < productAvatars.length; i++) {
+					MultipartFile productAvatar = productAvatars[i];
+					String fullPath = "C:\\Users\\Hoang\\java09blog\\upload\\products\\"
+							+ productAvatar.getOriginalFilename();
+					productAvatar.transferTo(new File(fullPath));
+					pro.setAvatar("/products/" + productAvatar.getOriginalFilename());
+				}
 			}
 		}
 		productRepo.save(pro);

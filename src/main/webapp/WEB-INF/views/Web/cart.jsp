@@ -103,10 +103,30 @@
 						
 					</tbody>
 				</table>
+				<div>
+					<%
+							String username = "";
+							Object principal = org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+							if (principal instanceof org.springframework.security.core.userdetails.UserDetails) {
+							  username = ((com.devpro.java09.entity.UserEntity)principal).getAddress();
+							  
+							}
+							%>
+						<a href="#">Địa Chỉ Giao hang  <%=username %></a>
+						
+				</div>
 				<div style="text-align: left;">Tổng Tiền: 
 					<span>${GIO_HANG.tatol}</span>
 				 </div>
-				<div style="text-align: center;"><button type="button" class="btn btn-danger">Thanh Toán</button></div>
+				<div style="text-align: center;">
+				<%-- <a href="${pageContext.request.contextPath}/cart/save-cart" type="button" class="btn btn-danger">Thanh Toán</a> --%>
+				<sec:authorize access="!isAuthenticated()">
+					<a href="${pageContext.request.contextPath}/login" type="button" class="btn btn-danger">Thanh Toán</a>
+				</sec:authorize>
+				<sec:authorize access="isAuthenticated()">
+				  	<a href="${pageContext.request.contextPath}/cart/save-cart" type="button" class="btn btn-danger">Thanh Toán</a>
+				</sec:authorize>
+				</div>
 			</div>
 			
 		</section>

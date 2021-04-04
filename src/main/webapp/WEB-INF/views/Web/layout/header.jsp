@@ -76,8 +76,18 @@
         <ul>
           <li class="active"><a href="#header">Trang Chủ</a></li>
           
-          <c:forEach var="category" items="${categories}">
-          	<li><a href="${pageContext.request.contextPath}/dssp/${category.id}">${category.name_categories}</a></li>
+          <c:forEach var="entry" items="${categories}">
+          	<li class="drop-down">
+          		
+          		<a href="#">${entry.key}</a>
+          			<ul>
+          				<c:forEach var="item" items="${entry.value }">
+          					<li><a href="${pageContext.request.contextPath}/dssp/${item.id}">${item.name_categories}</a></li>
+          				</c:forEach>
+          				 
+          			</ul>
+          		
+          	</li>
           </c:forEach>
          <!--  <li><a href="#about">Áo Thun Nam</a></li>
           <li><a href="#services">Quần Nam</a></li>
@@ -107,15 +117,34 @@
           </li> -->
           
           <li><a href="#contact">Contact Us</a></li>
-           <%-- <li><a href="${pageContext.request.contextPath}/login">Đăng Nhập</a></li> --%>
+           
            <sec:authorize access="!isAuthenticated()">
 					<li class="nav-item"><a class="nav-link "
 						href="${pageContext.request.contextPath}/login">Đăng nhập</a></li>
 				</sec:authorize>
 				<sec:authorize access="isAuthenticated()">
-				  	<li class="nav-item text-nowrap"><a class="nav-link"
-						href="${pageContext.request.contextPath}/perform_logout">Sign
-							out</a></li>
+					<li class="drop-down" >
+							<%
+							String username = "";
+							Object principal = org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+							if (principal instanceof org.springframework.security.core.userdetails.UserDetails) {
+							  username = ((com.devpro.java09.entity.UserEntity)principal).getLastName();
+							  
+							}
+							%>
+						<a href="#">Welcome  <%=username %></a>
+						<ul>
+								<li class="nav-item text-nowrap">
+									<a class="nav-link" href="${pageContext.request.contextPath}/perform_logout">Đăng xuất</a>
+								</li>
+							<sec:authorize access="hasAuthority('ADMIN')"><!-- xác thực nếu là admin -->
+				  				<li class="nav-item text-nowrap">
+				  					<a class="nav-link" href="${pageContext.request.contextPath}/admin/home">Trang quản trị</a>
+			  					</li>
+							</sec:authorize>
+						</ul>
+					</li>
+				  	
 			</sec:authorize>
           <li>
           	<a href="${pageContext.request.contextPath}/cart/check-out" class="icofont"><i class="icofont-cart-alt"></i>

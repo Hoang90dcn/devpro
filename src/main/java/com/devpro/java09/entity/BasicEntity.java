@@ -15,22 +15,34 @@ public abstract class BasicEntity {
 	@Id // xác định đây là khoá chính.
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // auto-increment.
 	@Column(name = "id", nullable = false) 
-	private Integer id; // primary-key
+	protected Integer id; // primary-key
 	
 	@Column(name = "created_date")
-	private LocalDateTime created_date;
+	protected LocalDateTime created_date;
 	
 	@Column (name = "created_by")
-	private String created_by;
+	protected String created_by;
 	
 	@Column ( name = "updated_date")
-	private LocalDateTime updated_date;
+	protected LocalDateTime updated_date;
 	
 	@Column (name = "updated_by")
 	private String updated_by;
 
+	
+	@Column (name = "statuss", columnDefinition = "TINYINT")
+	private Boolean status;
+	
 	public Integer getId() {
 		return id;
+	}
+
+	public Boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(Boolean status) {
+		this.status = status;
 	}
 
 	public void setId(Integer id) {

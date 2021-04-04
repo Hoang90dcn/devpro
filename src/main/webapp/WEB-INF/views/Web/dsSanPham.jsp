@@ -62,8 +62,8 @@
                 <div class="row portfolio-container">
                 <c:forEach var="product" items="${products }">
                     <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                        <div class="portfolio-wrap">
-                            <img src="${pageContext.request.contextPath}/files${product.avatar }"  alt="Không tìm thấy ảnh"/>
+                        <div class="portfolio-wrap" style="margin: auto;">
+                            <img src="${pageContext.request.contextPath}/files${product.avatar }"  alt="Không tìm thấy ảnh" style="height: 370px; width: 350px; margin: auto;"/>
                             <div class="portfolio-info">
                                 <h4>App 1</h4>
                                 <p>App</p>
@@ -75,7 +75,7 @@
                                 </div>
                             </div>
                             <h4 style="text-align: center;">${product.name_product}</h4>
-                            <h6 style="text-align: center;">${product.price}</h6>
+                            <h6 style="text-align: center;">${product.price} $</h6>
                            
                         </div>
                     </div>

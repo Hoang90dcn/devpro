@@ -54,7 +54,7 @@
 			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 
 			<h2>Thêm mới sản phẩm</h2>
-			<form:form method="post" action="/admin/save-product" modelAttribute="product" enctype="multipart/form-data">
+			<form:form method="post" action="/admin/save-new-product" modelAttribute="product" enctype="multipart/form-data">
 				<div class="form-group">
 					<label>Danh mục</label>
 					<form:select class="form-control form-control-line" path="category.id">

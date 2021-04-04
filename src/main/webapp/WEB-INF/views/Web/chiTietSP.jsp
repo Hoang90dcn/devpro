@@ -94,11 +94,11 @@
                     <div>
                         <h5>Chọn size và số lượng</h5>
                         <select title="SIZE">
-                            <option>Size 1</option>
-                            <option>Size 2</option>
-                            <option>Size 3</option>
-                            <option>Size 4</option>
-                            <option>Size 5</option>
+                            <option>Size S</option>
+                            <option>Size M</option>
+                            <option>Size L</option>
+                            <option>Size XL</option>
+                            <option>Size XXL</option>
                         </select>
 
                         <select title="Số lượng" id="selectSL">
@@ -140,18 +140,7 @@
                     <img src= "${pageContext.request.contextPath}/files${product.avatar}" class="content-2">
                 </div>
             </div>
-           <div class="row">
-                <h3>Thông Số</h3>
-                <p>
-                    <ul>
-                        <li>Có dây buộc</li>
-                        <li>Thân giày bằng da</li>
-                        <li>Giày tập với thiết kế mũi vỏ sò kinh điển</li>
-                        <li>Lót giày đúc và lớp lót bằng vải dệt</li>
-                    </ul>
-                    
-                </p>
-           </div>
+          
         </div>
 
 
